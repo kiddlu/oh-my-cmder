@@ -1,5 +1,49 @@
 # Release Notes
 
+## 0.3.5 (Dec 5, 2019)
+
+  * eb3099e [git] Add `restore` and `switch` commands (#119)
+  * 50954bc [.net] Add completions for dotnet (#120)
+  * aa0541f [k8s] Basic kubectl completion script (#113)
+  * a3339f8 [py] Added pipenv completion (#111)
+  * 8228a33 [py] Added pip completion (#110)
+  * b366d5d [scoop] Added scoop completions (#109)
+  * 4a8056d [.net] Add netcoreapp3.1 (#123)
+
+## 0.3.4 (Aug 19, 2019)
+
+Improvements/bugfixes for git completions/prompt
+
+  * f85c7a1 [git] fix gsub branch (#114)
+  * bf114aa [git] Add support for detecting branch names in worktrees (#96)
+  * 5d33037 [git] Add missing clone options for git (#106)
+  * b2d207d [net] Add three remaining help topics (#107)
+  * 781c0bf Don't default to origin if no remote is configured (#102)
+
+## 0.3.3 (Oct 24, 2017)
+
+A lot of improvements for vagrant completions (thanks to @Andegawen) and a few bugfixes for `yarn`, `ssh` and `git`.
+
+  * `af5f6d1` [git] Fix git main worktree detection (#95)
+  * `032ff0c` [vagrant] Close Vagrantfile after usage (#93)
+  * `757c096` [vagrant] Enhance regex for finding provision names (#91)
+  * `84884db` [vagrant] Vagrant list provisions on `--provision-with`  (#88)
+  * `59055f7` [vagrant] add `global-status` and `snapshot` commands  (#86)
+  * `e4d562a` [ssh] Improves pattern matching for searching hosts (#85)
+  * `34d3c0c` [common] Make luacheck happy (#83)
+  * `f1898a0` [git] Support completing files for `git diff` (#82)
+  * `c288656` [yarn] Suggest installed executables for yarn run
+  * `162d402` [common] Fix arguments clobbering 'table' class
+  * `a552d8c` [chore] Remove trailing whitespace to pass CI (#70)
+  * `3f635f9` [yarn] Upgrade commands for Yarn v0.17.8 (#69)
+  * `b76867a` [git] Add support for fetch --all (#68)
+  * `8edbf28` Add completions for angular-cli (#67)
+  * `9cc940c` [common] Enable luacheck
+  * `a369227` [common] Configure CI
+  * `0714e67` [common] Add tests for funclib and color modules
+  * `a4c83df` [test] Add test harness and instructions
+  * `834dbf3` [git] Display git push destination in prompt
+
 ## 0.3.2 (Nov 6, 2016)
 
 This release adds completions for `yarn` package manager and a bunch of minor improvements and bugfixes
