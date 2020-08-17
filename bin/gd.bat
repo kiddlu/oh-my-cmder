@@ -1,3 +1,4 @@
 @echo off
 
-gitk %*
+::gitk %*
+git diff %*
