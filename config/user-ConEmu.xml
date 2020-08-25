@@ -892,7 +892,7 @@
 			<value name="KillSshAgent" type="hex" data="01"/>
 			<value name="ProcessCtrlZ" type="hex" data="00"/>
 			<value name="JumpListAutoUpdate" type="hex" data="01"/>
-			<value name="CompressLongStrings" type="hex" data="01"/>
+			<value name="CompressLongStrings" type="hex" data="00"/>
 			<value name="DynamicBufferHeight" type="hex" data="01"/>
 			<value name="CTS.ResetOnRelease" type="hex" data="00"/>
 			<value name="CTS.EraseBeforeReset" type="hex" data="01"/>
