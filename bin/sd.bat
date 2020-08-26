@@ -1,4 +1,4 @@
 @echo off
 
-dir /b /a:D | peco | busybox tr -d '[:cntrl:]' | clip
+dir /b /a:D /s | peco | busybox tr -d '[:cntrl:]' | clip
 
