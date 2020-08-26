@@ -3,3 +3,5 @@
 # Except these files
 !.gitignore
 shadowsocks-libqss.exe
+!sndcpy.apk
+!sndcpy.bat
