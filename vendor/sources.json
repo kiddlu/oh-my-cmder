@@ -21,7 +21,7 @@
     },
     {
         "name": "platform-tools-windows",
-        "version": "27.0.1",
+        "version": "30.0.5",
         "url": "https://developer.android.com/studio/releases/platform-tools.html"
     },
     {
