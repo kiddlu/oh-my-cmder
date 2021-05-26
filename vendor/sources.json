@@ -26,7 +26,7 @@
     },
     {
         "name": "busybox-w32",
-        "version": "v1.28.0-FRP-1722-g096aee2bb",
+        "version": "v1.34.0-FRP-3902-g61e53aa93",
         "url": "http://frippery.org/busybox"
     },
     {
@@ -35,18 +35,8 @@
         "url": "http://www.nirsoft.net/utils/nircmd.html"
     },
     {
-        "name": "winpty",
-        "version": "0.4.3-cygwin-2.8.0",
-        "url": "https://github.com/rprichard/winpty/releases"
-    },
-    {
-        "name": "sudo for windows",
-        "version": "0.0.1",
-        "url": "https://github.com/mattn/sudo"
-    },
-    {
         "name": "peco",
-        "version": "v0.5.1",
+        "version": "v0.5.8",
         "url": "https://github.com/peco/peco"
     },
     {
@@ -56,7 +46,7 @@
     },
     {
         "name": "ag",
-        "version": "2018-04-24/2.1.0-34-g5b10c68",
+        "version": "2020-07-05_2.2.0-58-g5a1c8d8-x86",
         "url": "https://github.com/k-takata/the_silver_searcher-win32/releases"
     },
     {
@@ -70,13 +60,8 @@
         "url": "http://gnu.org/make"
     },
     {
-        "name": "scrcpy",
-        "version": "1.6",
-        "url": "https://github.com/Genymobile/scrcpy"
-    },
-    {
         "name": "msls",
-        "version": "4.8.333",
+        "version": "4.8.349",
         "url": "https://u-tools.com/msls"
     },
     {
@@ -87,5 +72,10 @@
     {
         "name": "uwe-sieber tools",
         "url": "http://www.uwe-sieber.de/english.html"
+    }
+    {
+        "name": "clover",
+        "version": "3.5.4.20416",
+        "url": "http://cn.ejie.me/"
     }
 ]
