@@ -32,6 +32,7 @@ exit /b
 :::options:
 :::
 :::  append     <in> Append to the path env variable rather than pre-pend.
+::B
 :::
 :::output:
 :::
@@ -41,7 +42,7 @@ exit /b
     if "%~1" neq "" (
         set "add_path=%~1"
     ) else (
-        %lib_console% show_error "You must specify a directory to add to the path!"
+        %print_error% "You must specify a directory to add to the path!"
         exit 1
     )
 
@@ -51,50 +52,59 @@ exit /b
         set "position="
     )
 
+    dir "%add_path%" | findstr -i "\.COM \.EXE \.BAT \.CMD \.PS1 \.VBS" >NUL
+    if "%ERRORLEVEL%" == "0" (
+        set "add_to_path=%add_path%"
+    ) else (
+        set "add_to_path="
+    )
+
     if "%fast_init%" == "1" (
       if "%position%" == "append" (
-        set "PATH=%PATH%;%add_path%"
+        set "PATH=%PATH%;%add_to_path%"
       ) else (
-        set "PATH=%add_path%;%PATH%"
+        set "PATH=%add_to_path%;%PATH%"
       )
+      goto :end_enhance_path
+    ) else if "add_to_path" equ "" (
       goto :end_enhance_path
     )
 
     set found=0
-    set "find_query=%add_path%"
+    set "find_query=%add_to_path%"
     set "find_query=%find_query:\=\\%"
     set "find_query=%find_query: =\ %"
     set OLD_PATH=%PATH%
 
     setlocal enabledelayedexpansion
-    if "%found%" == "0" (
-      echo "%path%"|%WINDIR%\System32\findstr >nul /I /R /C:";%find_query%;"
+    if "!found!" == "0" (
+      echo "!path!"|!WINDIR!\System32\findstr >nul /I /R /C:";!find_query!;"
       call :set_found
     )
-    %lib_console% debug_output  :enhance_path "Env Var INSIDE PATH %find_query% - found=%found%"
+    %print_debug%  :enhance_path "Env Var INSIDE PATH !find_query! - found=!found!"
 
-    if /i "%position%" == "append" (
+    if /i "!position!" == "append" (
       if "!found!" == "0" (
-        echo "%path%"|%WINDIR%\System32\findstr >nul /I /R /C:";%find_query%\"$"
+        echo "!path!"|!WINDIR!\System32\findstr >nul /I /R /C:";!find_query!\"$"
         call :set_found
       )
-      %lib_console% debug_output  :enhance_path "Env Var END PATH %find_query% - found=!found!"
+      %print_debug%  :enhance_path "Env Var END PATH !find_query! - found=!found!"
     ) else (
       if "!found!" == "0" (
-        echo "%path%"|%WINDIR%\System32\findstr >nul /I /R /C:"^\"%find_query%;"
+        echo "!path!"|!WINDIR!\System32\findstr >nul /I /R /C:"^\"!find_query!;"
         call :set_found
       )
-      %lib_console% debug_output  :enhance_path "Env Var BEGIN PATH %find_query% - found=!found!"
+      %print_debug%  :enhance_path "Env Var BEGIN PATH !find_query! - found=!found!"
     )
     endlocal & set found=%found%
 
     if "%found%" == "0" (
         if /i "%position%" == "append" (
-            %lib_console% debug_output :enhance_path "Appending '%add_path%'"
-            set "PATH=%PATH%;%add_path%"
+            %print_debug% :enhance_path "Appending '%add_to_path%'"
+            set "PATH=%PATH%;%add_to_path%"
         ) else (
-            %lib_console% debug_output :enhance_path "Prepending '%add_path%'"
-            set "PATH=%add_path%;%PATH%"
+            %print_debug% :enhance_path "Prepending '%add_to_path%'"
+            set "PATH=%add_to_path%;%PATH%"
         )
 
         set found=1
@@ -102,12 +112,29 @@ exit /b
 
     :end_enhance_path
     set "PATH=%PATH:;;=;%"
-    if NOT "%OLD_PATH%" == "%PATH%" (
-      %lib_console% debug_output  :enhance_path "END Env Var - PATH=%path%"
-      %lib_console% debug_output  :enhance_path "Env Var %find_query% - found=%found%"
-    )
-    set "position="
+
+    REM echo %path%|"C:\Users\dgames\cmder - dev\vendor\git-for-windows\usr\bin\wc" -c
+    if "%fast_init%" == "1" exit /b
+
+    if not "%OLD_PATH:~0,3000%" == "%OLD_PATH:~0,3001%" goto :toolong
+    if not "%OLD_PATH%" == "%PATH%" goto :changed
     exit /b
+
+    :toolong
+      echo %OLD_PATH%>tempfileA
+      echo %PATH%>tempfileB
+      fc /b tempfileA tempfileB 2>nul 1>nul
+      if errorlevel 1 ( del tempfileA & del tempfileB & goto :changed )
+      del tempfileA & del tempfileB
+      exit /b
+
+    :changed
+      %print_debug%  :enhance_path "END Env Var - PATH=%path%"
+      %print_debug%  :enhance_path "Env Var %find_query% - found=%found%"
+      exit /b
+
+    exit /b
+
 
 :set_found
     if "%ERRORLEVEL%" == "0" (
@@ -146,24 +173,31 @@ exit /b
     if "%~1" neq "" (
         set "add_path=%~1"
     ) else (
-        %lib_console% show_error "You must specify a directory to add to the path!"
+        %print_error% "You must specify a directory to add to the path!"
         exit 1
     )
 
-    if "%~2" gtr "1" (
-        set "max_depth=%~2"
-    ) else (
-        set "max_depth=1"
-    )
+    set "depth=%~2"
+    set "max_depth=%~3"
 
-    if "%~3" neq "" if /i "%~3" == "append" (
-        set "position=%~3"
+    if "%~4" neq "" if /i "%~4" == "append" (
+        set "position=%~4"
     ) else (
         set "position="
     )
 
+    dir "%add_path%" 2>NUL | findstr -i "\.COM \.EXE \.BAT \.CMD \.PS1 \.VBS" >NUL
+
+    if "%ERRORLEVEL%" == "0" (
+        set "add_to_path=%add_path%"
+    ) else (
+        set "add_to_path="
+    )
+
     if "%fast_init%" == "1" (
-      call :enhance_path "%add_path%" %position%
+        if "%add_to_path%" neq "" (
+            call :enhance_path "%add_to_path%" %position%
+        )
     )
 
     set "PATH=%PATH:;;=;%"
@@ -171,20 +205,22 @@ exit /b
       exit /b
     )
 
-    if "%depth%" == "" set depth=0
-
-    %lib_console% debug_output  :enhance_path_recursive "Env Var - add_path=%add_path%"
-    %lib_console% debug_output  :enhance_path_recursive "Env Var - position=%position%"
-    %lib_console% debug_output  :enhance_path_recursive "Env Var - max_depth=%max_depth%"
+    %print_debug%  :enhance_path_recursive "Env Var - add_path=%add_to_path%"
+    %print_debug%  :enhance_path_recursive "Env Var - position=%position%"
+    %print_debug%  :enhance_path_recursive "Env Var - depth=%depth%"
+    %print_debug%  :enhance_path_recursive "Env Var - max_depth=%max_depth%"
 
     if %max_depth% gtr %depth% (
-        %lib_console% debug_output :enhance_path_recursive "Adding parent directory - '%add_path%'"
-        call :enhance_path "%add_path%" %position%
+        if "%add_to_path%" neq "" (
+            %print_debug% :enhance_path_recursive "Adding parent directory - '%add_to_path%'"
+            call :enhance_path "%add_to_path%" %position%
+        )
         call :set_depth
         call :loop_depth
     )
 
     set "PATH=%PATH%"
+
     exit /b
 
 : set_depth
@@ -192,11 +228,15 @@ exit /b
     exit /b
 
 :loop_depth
+    if %depth% == %max_depth% (
+        exit /b
+    )
+
     for /d %%i in ("%add_path%\*") do (
-        %lib_console% debug_output  :enhance_path_recursive "Env Var BEFORE - depth=%depth%"
-        %lib_console% debug_output :enhance_path_recursive "Found Subdirectory - '%%~fi'"
-        call :enhance_path_recursive "%%~fi" %max_depth% %position%
-        %lib_console% debug_output  :enhance_path_recursive "Env Var AFTER- depth=%depth%"
+        %print_debug%  :enhance_path_recursive "Env Var BEFORE - depth=%depth%"
+        %print_debug% :enhance_path_recursive "Found Subdirectory - '%%~fi'"
+        call :enhance_path_recursive "%%~fi" %depth% %max_depth% %position%
+        %print_debug%  :enhance_path_recursive "Env Var AFTER- depth=%depth%"
     )
     exit /b
 

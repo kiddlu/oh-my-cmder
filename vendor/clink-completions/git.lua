@@ -235,7 +235,7 @@ local stashes = function(token)  -- luacheck: no unused args
     -- make a dictionary of stash time and stash comment to
     -- be able to sort stashes by date/time created
     for stash in stash_file:lines() do
-        local stash_time, stash_name = stash:match('(%d%d%d%d%d%d%d%d%d%d) %+%d%d%d%d%s+(.*)')
+        local stash_time, stash_name = stash:match('(%d%d%d%d%d%d%d%d%d%d) [+-]%d%d%d%d%s+(.*)')
         if (stash_name and stash_name) then
             stashes[stash_time] = stash_name
         end
@@ -259,7 +259,7 @@ local stashes = function(token)  -- luacheck: no unused args
     local ret = {}
     local ret_filter = {}
     for i,v in ipairs(stash_times) do
-        table.insert(ret, "stash@{"..i.."}")
+        table.insert(ret, "stash@{"..(i-1).."}")
         table.insert(ret_filter, "stash@{"..(i-1).."}    "..stashes[v])
     end
 
@@ -751,6 +751,7 @@ local git_parser = parser(
                 "--add"..parser("--push", {remotes}),
                 "--delete"..parser("--push", {remotes})
             ),
+            "get-url"..parser({remotes}, "--push", "--all"),
             "show"..parser("-n", {remotes}),
             "prune"..parser("-n", "--dry-run", {remotes}),
             "update"..parser({remotes}, "-p", "--prune")
@@ -898,6 +899,27 @@ local git_parser = parser(
         "verify-tag",
         "web--browse",
         "whatchanged",
+        "worktree"..parser({
+            "add"..parser(
+                {matchers.dirs},
+                {branches},
+                "-f", "--force",
+                "--detach",
+                "--checkout",
+                "--lock",
+                "-b"..parser({branches})
+            ),
+            "list"..parser("--porcelain"),
+            "lock"..parser("--reason"),
+            "move",
+            "prune"..parser(
+                "-n", "--dry-run",
+                "-v", "--verbose",
+                "--expire"
+            ),
+            "remove"..parser("-f"),
+            "unlock"
+        }),
         "write-tree",
     },
     "--version",
