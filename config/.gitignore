@@ -3,5 +3,8 @@
 cygwin_homepath
 settings
 ConEmu.xml
+clink.log
+clink_history*
+
 # Except these files
 !.gitignore
