@@ -1,0 +1,59 @@
+{
+   "checksum": "",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "children": [ {
+               "date_added": "13216120611425566",
+               "id": "4",
+               "name": "\u7CFB\u7EDF",
+               "type": "url",
+               "url": "::{26EE0668-A00A-44D7-9371-BEB064C98683}\\5\\::{BB06C0E4-D293-4F75-8A90-CB05B6477EEE}"
+            }, {
+               "date_added": "13216120719030800",
+               "id": "8",
+               "name": "\u7F51\u7EDC\u548C\u5171\u4EAB\u4E2D\u5FC3",
+               "type": "url",
+               "url": "::{26EE0668-A00A-44D7-9371-BEB064C98683}\\0\\::{8E908FC9-BECC-40F6-915B-F4CA0E70D03D}"
+            }, {
+               "date_added": "13216120660099387",
+               "id": "6",
+               "name": "\u6240\u6709\u63A7\u5236\u9762\u677F\u9879",
+               "type": "url",
+               "url": "::{26EE0668-A00A-44D7-9371-BEB064C98683}\\0"
+            }, {
+               "date_added": "13216120621707414",
+               "id": "5",
+               "name": "\u63A7\u5236\u9762\u677F",
+               "type": "url",
+               "url": "::{26EE0668-A00A-44D7-9371-BEB064C98683}"
+            }, {
+               "date_added": "13216120864990768",
+               "id": "9",
+               "name": "\u7A0B\u5E8F\u548C\u529F\u80FD",
+               "type": "url",
+               "url": "::{26EE0668-A00A-44D7-9371-BEB064C98683}\\0\\::{7B81BE6A-CE2B-4676-A29E-EB907A5126C5}"
+            } ],
+            "date_added": "13216120697467613",
+            "date_modified": "13216120864990768",
+            "id": "7",
+            "name": "\u63A7\u5236",
+            "type": "folder"
+         } ],
+         "date_added": "13215879860755305",
+         "date_modified": "13216120660099387",
+         "id": "2",
+         "name": "\u4E66\u7B7E\u680F",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13215879860755305",
+         "date_modified": "0",
+         "id": "3",
+         "name": "\u5176\u4ED6\u4E66\u7B7E",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}
