@@ -34,8 +34,8 @@ end
 local segment = {
     isNeeded = true,
     text = "",
-    textColor = colorWhite, 
-    fillColor = colorMagenta
+    textColor = colorGreen,
+    fillColor = colorBlack
 }
 
 ---
@@ -44,8 +44,8 @@ local segment = {
 local function init()
     -- fullpath
     cwd = clink.get_cwd()
-    user = clink.get_env("USERNAME")
-    machine = clink.get_env("COMPUTERNAME")
+    --user = clink.get_env("USERNAME")
+    --machine = clink.get_env("COMPUTERNAME")
 
     -- show just current folder
     if plc_prompt_type == promptTypeFolder then
@@ -73,7 +73,8 @@ local function init()
         end
     end
 	
-	segment.text = user.."@"..machine..": "..cwd..""
+	-- segment.text = user.."@"..machine..": "..cwd..""'
+	 segment.text = ""..cwd..""
 end 
 
 ---
