@@ -487,7 +487,7 @@
 				<value name="Count" type="long" data="9"/>
 				<key name="Task1" modified="2020-03-31 10:15:38" build="191012">
 					<value name="Name" type="string" data="{cmd::Cmder as Admin}"/>
-					<value name="GuiArgs" type="string" data=' /icon "%CMDER_ROOT%\icons\cmder.ico"'/>
+					<value name="GuiArgs" type="string" data=' /icon "%CMDER_ROOT%\icons\cmd.ico"'/>
 					<value name="Cmd1" type="string" data='-new_console:d:"%USERPROFILE%" *cmd /k ""%ConEmuDir%\..\init.bat" "'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
@@ -496,7 +496,7 @@
 				</key>
 				<key name="Task2" modified="2020-04-04 18:46:13" build="191012">
 					<value name="Name" type="string" data="{cmd::Cmder}"/>
-					<value name="GuiArgs" type="string" data=' /icon "%CMDER_ROOT%\icons\cmder.ico"'/>
+					<value name="GuiArgs" type="string" data=' /icon "%CMDER_ROOT%\icons\cmd.ico"'/>
 					<value name="Cmd1" type="string" data='-new_console:d:"%USERPROFILE%" cmd /k ""%ConEmuDir%\..\init.bat" "'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
