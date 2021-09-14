@@ -11,5 +11,5 @@
 | uwe-sieber tools | multi                            | http://www.uwe-sieber.de/english.html                        |
 | clover           | 3.5.4.20416                      | http://cn.ejie.me/                                           |
 | iconv            | 1.16                             | http://mlocati.github.io/articles/gettext-iconv-windows.html |
-|                  |                                  |                                                              |
+| sfk              | Release 1.9.8                    | http://www.stahlworks.com/dev/swiss-file-knife.html          |
 |                  |                                  |                                                              |
